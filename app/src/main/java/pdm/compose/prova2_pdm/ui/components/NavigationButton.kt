@@ -11,37 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 
-/*
-* Old way of building navigability with Activities
-* */
-
-//@Composable
-//fun NavigationButton (
-//    context: Context,
-//    targetActivity: Class<out Activity>, //Providing flexibility in navigating to different types of activities
-//    //now I can pass an Activity or a subclass of Activity!!
-//    buttonText: String,
-//    modifier: Modifier = Modifier,
-//    finishCurrent: Boolean = false
-//) {
-//    Button(
-//        onClick = {
-//            context.startActivity(Intent(context,
-//                targetActivity))
-//            if (finishCurrent){
-//                (context as? Activity)?.finish()
-//            }
-//        },
-//        modifier = modifier
-//    ) {
-//        Text(text = buttonText)
-//    }
-//}
-
-/*
-* Now I'm going to route everything
-* */
-
 
 @Composable
 fun NavigationButton (

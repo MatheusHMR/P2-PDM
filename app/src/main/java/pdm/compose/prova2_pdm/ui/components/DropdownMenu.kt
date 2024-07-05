@@ -9,7 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+//import coil.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -63,11 +63,11 @@ fun DropdownMenuComponent(
                         text = {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 imageUrls?.getOrNull(index)?.let { imageUrl ->
-                                    AsyncImage(
-                                        model = imageUrl,
-                                        contentDescription = null,
-                                        modifier = Modifier.size(24.dp).padding(end = 8.dp)
-                                    )
+//                                    AsyncImage(
+//                                        model = imageUrl,
+//                                        contentDescription = null,
+//                                        modifier = Modifier.size(24.dp).padding(end = 8.dp)
+//                                    )
                                 }
                                 Text(option)
                             }

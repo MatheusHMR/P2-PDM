@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="pdm.compose.prova2_pdm" />
+                  <option name="mobileSdkAppId" value="1:593539379460:android:65ee9548a55b8feb8e2051" />
+                  <option name="projectId" value="prova2-pdm-307b6" />
+                  <option name="projectNumber" value="593539379460" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
