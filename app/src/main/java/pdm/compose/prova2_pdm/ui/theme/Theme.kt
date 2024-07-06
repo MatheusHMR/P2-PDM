@@ -33,6 +33,10 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+//private val DarkColorScheme = darkColorScheme(
+//    primary =
+//)
+
 @Composable
 fun Prova2PDMTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

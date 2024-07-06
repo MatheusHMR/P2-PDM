@@ -20,12 +20,13 @@ fun TextTitle(
     fontSize: TextUnit = 32.sp,
     modifier: Modifier = Modifier
         .fillMaxWidth()
-        .padding(32.dp)
+        .padding(32.dp),
+    alignment: TextAlign? = null
 ){
     Text(
         text = text,
         modifier = modifier,
-        textAlign = TextAlign.Center,
+        textAlign = alignment?: TextAlign.Center,
         color = color, // Customize color as needed
         fontWeight = FontWeight.Bold,
         fontSize = fontSize

@@ -1,10 +1,10 @@
-package pdm.compose.prova2_pdm.data
+package pdm.compose.prova2_pdm.repository
 
 import android.util.Log
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import pdm.compose.prova2_pdm.model.Bike
+import pdm.compose.prova2_pdm.model.Cliente
 
 
 class BikeRepository(
@@ -22,7 +22,9 @@ class BikeRepository(
 
     suspend fun getAll() : List<Bike> {
         return try {
-            bikeCollection.get().await().documents
+            bikeCollection.get().addOnSuccessListener {
+                Log.d("BikeRepository", "Bikes acquired: $it")
+            }.await().documents
                 .mapNotNull { it.toObject(Bike::class.java) }
         } catch (e: Exception){
             Log.e("BikeRepository", "Error inside BikeRepository - getAllBikes")
@@ -30,26 +32,31 @@ class BikeRepository(
         }
     }
 
-    suspend fun getOneById() {
+//    suspend fun getOneById() {
+//        try {
+//
+//        } catch (e: Exception){
+//            Log.e("BikeRepository", "Error inside BikeRepository - getBikeById")
+//        }
+//    }
+
+    suspend fun update(bike: Bike) {
         try {
-
-        } catch (e: Exception){
-            Log.e("BikeRepository", "Error inside BikeRepository - getBikeById")
-        }
-    }
-
-    suspend fun update() {
-        try {
-
+            bikeCollection.document(bike.codigo).set(bike)
+                .addOnSuccessListener {
+                    Log.d("BikeRepository", "Updated bike: $bike successfully")
+                }.await()
         } catch (e: Exception){
             Log.e("BikeRepository", "Error inside BikeRepository - updateBike")
         }
     }
 
-    suspend fun delete() {
+    suspend fun delete(codigoBike: String) {
         try {
-
-        } catch (e: Exception){
+            bikeCollection.document(codigoBike).delete().addOnSuccessListener {
+                Log.d("BikeRepository", "Deleted bike: $codigoBike")
+            }.await()
+        } catch (e: Exception) {
             Log.e("BikeRepository", "Error inside BikeRepository - deleteBike")
         }
     }

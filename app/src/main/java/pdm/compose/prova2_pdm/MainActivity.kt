@@ -4,35 +4,40 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import pdm.compose.prova2_pdm.data.DataProvider
-import pdm.compose.prova2_pdm.model.Cliente
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import pdm.compose.prova2_pdm.ui.NavBar
+import pdm.compose.prova2_pdm.ui.TopBar
+import pdm.compose.prova2_pdm.ui.screens.HomeScreen
+import pdm.compose.prova2_pdm.ui.screens.bikes.BikesNavigation
+import pdm.compose.prova2_pdm.ui.screens.clientes.ClientesNavigation
 import pdm.compose.prova2_pdm.ui.theme.Prova2PDMTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             Prova2PDMTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                    val cliente1 = Cliente(cpf = "003", nome = "mario da costa", instagram = "@mariodacosta", email = "mariodacosta@gmail.com")
-                    val cliente2 = Cliente(cpf = "004", nome = "marreco", instagram = "@marreco123", email = "marreco@gmail.com")
-                    val clientsRepository = DataProvider.clienteRepository
-                    LaunchedEffect(key1 = cliente1) {
-                        clientsRepository.addCliente(cliente1)
-                    }
+                Surface(
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    val navController = rememberNavController()
+                    /* TODO VIEW MODELS */
+//                    val clienteViewModel = ClienteViewModel(/*dataprovider*/)
+//                    val bikeViewModel = BikeViewModel(/*dataprovider*/)
+                    Navigation(navController)
                 }
             }
         }
@@ -40,18 +45,23 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    Prova2PDMTheme {
-        Greeting("Android")
+fun Navigation(
+    navController: NavHostController
+    /* TODO VIEW MODELS */
+){
+    Scaffold(
+        topBar = { TopBar(navController = navController) },
+        bottomBar = { NavBar(navController = navController) }
+    ) {  innerPadding ->
+        NavHost(
+            navController = navController,
+            startDestination = "home",
+            modifier = Modifier.padding(innerPadding)
+            ) {
+            composable("home") { HomeScreen() }
+            composable("clientes") { ClientesNavigation(navController = navController) }
+            composable("bikes") { BikesNavigation(navController = navController, /*viewModelStoreOwner = TODO VIEW MODEL */) }
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-package pdm.compose.prova2_pdm.data
+package pdm.compose.prova2_pdm.repository
 
 import android.util.Log
 import com.google.firebase.firestore.CollectionReference
@@ -30,27 +30,34 @@ class ClienteRepository(
         }
     }
 
-    suspend fun getOneById() {
-        try {
+//    suspend fun getOneById(clienteId: String): {
+//       return try {
+//            clientesCollection.document(clienteId).get().addOnSuccessListener {
+//                Log.d("ClienteRepository", "Got client of $clienteId successfully!")
+//            }.await()
+//        } catch (e: Exception){
+//            Log.e("ClienteRepository", "Error inside ClienteRepository - getOneClienteById")
+//        }
+//    }
 
+    suspend fun update(cliente: Cliente) {
+        try {
+            clientesCollection.document(cliente.clienteId).set(cliente)
+                .addOnSuccessListener {
+                Log.d("ClienteRepository", "Updated cliente: $cliente successfully")
+            }.await()
         } catch (e: Exception){
-            Log.e("ClienteRepository", "Error inside ClienteRepository - getOneClienteById")
+            Log.e("ClienteRepository", "Error inside ClienteRepository - updateCliente")
         }
     }
 
-    suspend fun update() {
+    suspend fun delete(clienteId: String) {
         try {
-
-        } catch (e: Exception){
-            Log.e("BikeRepository", "Error inside BikeRepository - updateBike")
-        }
-    }
-
-    suspend fun delete() {
-        try {
-
-        } catch (e: Exception){
-            Log.e("BikeRepository", "Error inside BikeRepository - deleteBike")
+            clientesCollection.document(clienteId).delete().addOnSuccessListener {
+                Log.d("ClienteRepository", "Deleted cliente: $clienteId")
+            }.await()
+        } catch (e: Exception) {
+            Log.e("ClienteRepository", "Error inside ClienteRepository - deleteCliente")
         }
     }
 }
