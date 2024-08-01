@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "593539379460",
+    "project_id": "prova2-pdm-307b6",
+    "storage_bucket": "prova2-pdm-307b6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593539379460:android:65ee9548a55b8feb8e2051",
+        "android_client_info": {
+          "package_name": "pdm.compose.prova2_pdm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9sHxLAqHJeFC3C9CGw50g3ie-U801Wtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
