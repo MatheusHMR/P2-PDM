@@ -1,10 +1,11 @@
-package pdm.compose.trabalhofinalpdm.ui.components
+package pdm.compose.prova2_pdm.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ComposableTarget
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -15,22 +16,39 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun TextTitle(
+    modifier: Modifier ?= null,
     text: String = "Empty",
-    color: Color = MaterialTheme.colorScheme.onSecondary,
-    fontSize: TextUnit = 32.sp,
-    modifier: Modifier = Modifier
-        .fillMaxWidth()
-        .padding(32.dp),
-    alignment: TextAlign? = null
+    color: Color ?= null,
+    fontSize: TextUnit ?= null,
+    alignment: TextAlign ?= null
 ){
     Text(
         text = text,
-        modifier = modifier,
+        modifier = modifier?: Modifier
+            .fillMaxWidth()
+            .padding(32.dp),
         textAlign = alignment?: TextAlign.Center,
-        color = color, // Customize color as needed
+        color = color?: MaterialTheme.colorScheme.primary, // Customize color as needed
         fontWeight = FontWeight.Bold,
-        fontSize = fontSize
+        fontSize = fontSize ?: 32.sp
     )
+}
+
+@Composable
+fun TextPropaganda(
+    text: String = "Empty",
+    color: Color = MaterialTheme.colorScheme.onPrimary,
+    modifier: Modifier ?= null
+) {
+    TextTitle(
+        modifier = modifier ?: Modifier
+            .padding(vertical = 16.dp, horizontal = 0.dp),
+        fontSize = 32.sp,
+        text = text,
+        color = color,
+        alignment = TextAlign.Left,
+
+        )
 }
 
 @Composable

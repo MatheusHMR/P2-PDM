@@ -1,4 +1,4 @@
-package pdm.compose.trabalhofinalpdm.ui.components
+package pdm.compose.prova2_pdm.ui.components
 
 import android.app.Activity
 import android.content.Context

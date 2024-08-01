@@ -45,7 +45,9 @@ class ClienteRepository(
             clientesCollection.document(cliente.clienteId).set(cliente)
                 .addOnSuccessListener {
                 Log.d("ClienteRepository", "Updated cliente: $cliente successfully")
-            }.await()
+            }.addOnFailureListener {
+                    Log.d("ClienteRepository", "Failed to update: $cliente")
+                }.await()
         } catch (e: Exception){
             Log.e("ClienteRepository", "Error inside ClienteRepository - updateCliente")
         }

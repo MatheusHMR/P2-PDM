@@ -13,4 +13,15 @@ object DataProvider {
 
     private val clientesCollection: CollectionReference by lazy { firestore.collection("clientes") }
     val clienteRepository: ClienteRepository by lazy { ClienteRepository( clientesCollection ) }
+
+
+    suspend fun globalBackup(): String {
+        val bikes = bikeRepository.getAll()
+        val clientes = clienteRepository.getAll()
+
+        val bikesString = bikes.joinToString(separator = "\n") { it.toString() }
+        val clientesString = clientes.joinToString(separator = "\n") { it.toString() }
+
+        return "Bikes:\n$bikesString\n\nClientes:\n$clientesString"
+    }
 }

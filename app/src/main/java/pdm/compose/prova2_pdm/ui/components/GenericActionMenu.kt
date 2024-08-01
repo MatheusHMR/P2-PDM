@@ -1,4 +1,4 @@
-package pdm.compose.trabalhofinalpdm.ui.components
+package pdm.compose.prova2_pdm.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

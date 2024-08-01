@@ -1,4 +1,4 @@
-package pdm.compose.trabalhofinalpdm.ui.components
+package pdm.compose.prova2_pdm.ui.components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button

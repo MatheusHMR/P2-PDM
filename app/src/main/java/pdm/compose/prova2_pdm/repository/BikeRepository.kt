@@ -32,13 +32,15 @@ class BikeRepository(
         }
     }
 
-//    suspend fun getOneById() {
-//        try {
-//
-//        } catch (e: Exception){
-//            Log.e("BikeRepository", "Error inside BikeRepository - getBikeById")
-//        }
-//    }
+    suspend fun getBikesByClienteId(clienteId: String) : List<Bike> {
+       return try {
+           bikeCollection.whereEqualTo("clienteId", clienteId).get().await()
+               .documents.mapNotNull { it.toObject(Bike::class.java) }
+        } catch (e: Exception){
+            Log.e("BikeRepository", "Error inside BikeRepository - getBikesByClienteId")
+           emptyList()
+        }
+    }
 
     suspend fun update(bike: Bike) {
         try {
@@ -58,6 +60,20 @@ class BikeRepository(
             }.await()
         } catch (e: Exception) {
             Log.e("BikeRepository", "Error inside BikeRepository - deleteBike")
+        }
+    }
+
+    suspend fun deleteBikesByClienteId(clienteId: String): Boolean {
+        return try {
+            val bikesToDelete = getBikesByClienteId(clienteId)
+            for (bike in bikesToDelete){
+                delete(bike.codigo)
+            }
+            Log.d("BikeRepository", "Bikes to delete: $bikesToDelete")
+            true
+        } catch (e: Exception) {
+            Log.e("BikeRepository", "Error inside BikeRepository - deleteBikesByClienteId", e)
+            false
         }
     }
 }

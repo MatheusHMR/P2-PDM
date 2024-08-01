@@ -1,4 +1,4 @@
-package pdm.compose.trabalhofinalpdm.ui.components
+package pdm.compose.prova2_pdm.ui.components
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.OutlinedTextField
@@ -19,23 +19,26 @@ fun CustomOutlinedTextField (
     label: String,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    leadingIcon: (@Composable () -> Unit) ?= null,
+    trailingIcon: (@Composable () -> Unit) ?= null,
     keyboardType: KeyboardType = KeyboardType.Text,
     validation: (String) -> String? = {null}
 //    Validation function passed as a parameter coming from the MainViewModel
 ){
-    var validationError by remember {
-        mutableStateOf<String?>(null) }
+    var validationError by remember { mutableStateOf<String?>(null) }
 
     OutlinedTextField(
         value = value,
         onValueChange = { newValue ->
             onValueChange(newValue)
             validationError = validation(newValue)
-            //Call the validation function
         },
         label = { Text( text = label) },
         modifier = modifier,
         enabled = enabled,
+        maxLines = 1,
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon,
         isError = validationError != null,
         keyboardOptions = KeyboardOptions(keyboardType =
             keyboardType),
